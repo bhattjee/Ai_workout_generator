@@ -1,252 +1,352 @@
+/* Importing Google Fonts - Montserrat (weights: 400, 600, 700) and Quicksand (weights: 400, 600) */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Quicksand:wght@400;600&display=swap');
+
+/* Base body styles */
 body {
-    font-family: "Montserrat", sans-serif;
-    margin: 20px;
-    background-color: #121212;
-    color: #e0e0e0;
+    font-family: "Montserrat", sans-serif;  /* Default font for the page */
+    margin: 20px;                          /* Margin around the body */
+    background-color: #121212;             /* Dark background color */
+    color: #e0e0e0;                        /* Light gray text color */
 }
 
+/* Main heading style */
 h1 {
-    text-align: center;
-    color: #ffffff;
-    margin-bottom: 30px;
+    text-align: center;                    /* Center-aligned text */
+    color: #ffffff;                        /* White color */
+    margin-bottom: 30px;                   /* Bottom margin */
 }
 
+/* Container styles for forms and workout plans */
 .form-container,
 .plan-container {
-    margin-bottom: 30px;
-    background-color: #1e1e1e;
-    padding: 30px;
-    border-radius: 40px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    color: #ffffff;
-    font-family: system-ui;
-    font-size: large;
-    font-weight: 700;
-    align-content: center;
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-bottom: 30px;                   /* Bottom margin */
+    background-color: #1e1e1e;             /* Dark container background */
+    padding: 30px;                         /* Inner spacing */
+    border-radius: 40px;                   /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+    color: #ffffff;                        /* White text */
+    font-family: system-ui;                /* System UI font */
+    font-size: large;                      /* Large font size */
+    font-weight: 700;                      /* Bold font weight */
+    align-content: center;                 /* Center alignment */
+    width: 60%;                           /* 60% of parent width */
+    margin: 0 auto;                        /* Horizontal centering */
 }
 
+/* Label styles */
 label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #ffffff;
+    display: block;                        /* Block display (own line) */
+    margin-bottom: 8px;                    /* Bottom margin */
+    font-weight: bold;                     /* Bold text */
+    color: #ffffff;                        /* White color */
+    font-size: 17px;                       /* Font size */
 }
 
+/* Styles for form elements */
 select,
-button {
-    width: calc(100% - 22px);
-    padding: 17px;
-    margin-bottom: 5px;
-    border: 1px solid #444;
-    border-radius: 18px;
-    box-sizing: border-box;
-    font-size: 16px;
-    font-weight: 700;
-    background-color: #222;
-    color: #ffffff;
-}
-
-button {
-    background-color: #333;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-size: 1.2rem;
-    font-family: system-ui;
-    font-weight: 700;
-    border-radius: 40px;
-}
-
-button:hover {
-    background-color: #444;
-    color: #ffffff;
-}
-
-.day-plan {
-    padding: 20px;
-    border-radius: 40px;
-    margin-bottom: -10px;
-    overflow: hidden;
-}
-
-.day-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    padding: 30px;
-    background-color: #222;
-    border-radius: 30px;
-    transition: all 0.3s ease;
-}
-
-.day-header:hover {
-    background-color: #333;
-}
-
-.day-header h3 {
-    color: #ffffff;
-    margin: 0;
-    font-size: 18px;
-}
-
-.day-header .muscle-groups {
-    color: #ff9800;
-    font-weight: bold;
-    font-size: 0.9em;
-}
-
-.exercises-container {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s ease-out;
-}
-
-.day-plan.active .exercises-container {
-    max-height: 2000px;
-    transition: max-height 0.5s ease-in;
-}
-
-.exercise {
-    background-color: #1a1a1a;
-    padding: 30px;
-    border-radius: 35px;
-    margin-bottom: 12px;
-    border: 1px solid #444;
-    color: #e0e0e0;
-}
-
-.exercise h4 {
-    margin-bottom: 5px;
-    color: #ffffff;
-    text-decoration: underline;
-}
-
-.exercise p {
-    margin: 5px 0;
-    font-size: 0.9em;
-    color: #bbbbbb;
-}
-
-.plan-container h2 {
-    text-align: center;
-    color: white;
-}
-
-.middel-text {
-    font-size: 2.5em;
-    color: #888;
-    margin-bottom: 10rem;
-    margin-top: 10rem;
-    margin-left: 13rem;
-    margin-right: 13rem;
-}
-
-.middel-text-sub {
-    font-size: 2em;
-    color: #888;
-    margin-bottom: 9rem;
-    margin-top: -25vh;
-    margin-left: 40rem;
-}
-
-.toggle-icon {
-    color: white;
-    font-size: 15px;
-    transition: transform 0.3s ease;
-}
-
-.day-plan.active .toggle-icon {
-    transform: rotate(180deg);
-}
-
-.recommendation-note {
-    background-color: #2a2a2a;
-    color: #ffcc00;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.recommended-exercise {
-    border-left: 4px solid #ffcc00;
-    background-color: #333;
-}
-
-.recommended-badge {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: #ffcc00;
-    color: #000;
-    padding: 3px 8px;
-    border-radius: 12px;
-    font-size: 0.8em;
-    font-weight: bold;
-}
-
-.exercise-details {
-    margin-top: 10px;
-}
-
-.exercise-stats {
-    display: flex;
-    gap: 10px;
-    margin: 10px 0;
-}
-
-.stat-box {
-    background-color: #222;
-    padding: 8px 12px;
-    border-radius: 8px;
-    text-align: center;
-    color: #ffffff;
-    flex: 1;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.stat-label {
-    display: block;
-    font-size: 0.8em;
-    color: #bbb;
-}
-
-.stat-value {
-    font-weight: bold;
-    font-size: 1.1em;
-}
-
-.workout-notes {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #1e1e1e;
-    border-radius: 8px;
-    border-left: 3px solid #4CAF50;
-}
+button,
 input {
-    width: calc(100% - 22px);
-    padding: 17px;
-    margin-bottom: 10px;
-    border: 1px solid #444;
-    border-radius: 18px;
-    box-sizing: border-box;
-    font-size: 16px;
-    font-weight: 700;
-    background-color: #222;
-    color: #ffffff;
+    width: 100%;                           /* Full width */
+    padding: 17px;                         /* Inner spacing */
+    margin-bottom: 15px;                   /* Bottom margin */
+    border: 1px solid #444;                /* Border */
+    border-radius: 18px;                   /* Rounded corners */
+    box-sizing: border-box;                /* Border included in width */
+    font-size: 16px;                       /* Font size */
+    font-weight: 700;                      /* Bold text */
+    background-color: #222;                /* Dark background */
+    color: #ffffff;                        /* White text */
 }
 
-input::placeholder {
-    color: #888;
-    font-weight: 400;
+/* Button specific styles */
+button {
+    background-color: #333;                /* Dark background */
+    color: white;                          /* White text */
+    border: none;                          /* No border */
+    cursor: pointer;                       /* Pointer cursor */
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+    font-size: 1.2rem;                     /* Larger font size */
+    font-family: system-ui;                /* System UI font */
+    font-weight: 700;                      /* Bold text */
+    border-radius: 40px;                   /* More rounded corners */
+    margin-top: 14px;                      /* Top margin */
+    margin-bottom: 0px;                    /* No bottom margin */
 }
 
-input:focus {
-    border-color: #ff9800;
-    outline: none;
+/* Button hover state */
+button:hover {
+    background-color: #444;                /* Lighter background on hover */
 }
+
+/* Daily workout plan container */
+.day-plan {
+    padding: 20px;                         /* Inner spacing */
+    border-radius: 40px;                   /* Rounded corners */
+    margin-bottom: -10px;                  /* Negative margin to reduce space */
+    overflow: hidden;                      /* Hide overflow */
+}
+
+/* Day header styles (clickable area) */
+.day-header {
+    display: flex;                         /* Flex layout */
+    justify-content: space-between;        /* Space between items */
+    align-items: center;                   /* Vertical centering */
+    cursor: pointer;                       /* Pointer cursor */
+    padding: 30px;                         /* Inner spacing */
+    background-color: #222;                /* Dark background */
+    border-radius: 30px;                   /* Rounded corners */
+    transition: all 0.3s ease;             /* Smooth transitions */
+}
+
+/* Day header hover state */
+.day-header:hover {
+    background-color: #333;                /* Lighter background on hover */
+}
+
+/* Day header title */
+.day-header h3 {
+    color: #ffffff;                        /* White text */
+    margin: 0;                             /* No margin */
+    font-size: 18px;                       /* Font size */
+}
+
+/* Muscle groups text style */
+.day-header .muscle-groups {
+    color: #ff9800;                        /* Orange color */
+    font-weight: bold;                     /* Bold text */
+    font-size: 0.9em;                      /* Smaller font size */
+}
+
+/* Exercises container (collapsible content) */
+.exercises-container {
+    max-height: 0;                         /* Initially collapsed */
+    overflow: hidden;                      /* Hide overflow */
+    transition: max-height 0.5s ease-out;  /* Collapse animation */
+}
+
+/* Expanded state for exercises container */
+.day-plan.active .exercises-container {
+    max-height: 2000px;                    /* Expanded height */
+    transition: max-height 0.5s ease-in;   /* Expand animation */
+}
+
+/* Individual exercise styles */
+.exercise {
+    background-color: #1a1a1a;             /* Dark background */
+    padding: 30px;                         /* Inner spacing */
+    border-radius: 35px;                   /* Rounded corners */
+    margin-bottom: 12px;                   /* Bottom margin */
+    border: 1px solid #444;                /* Border */
+    color: #e0e0e0;                        /* Light gray text */
+}
+
+/* Exercise name/title */
+.exercise h4 {
+    margin-bottom: 5px;                    /* Bottom margin */
+    color: #ffffff;                        /* White text */
+    text-decoration: underline;            /* Underlined */
+}
+
+/* Exercise description text */
+.exercise p {
+    margin: 5px 0;                         /* Vertical margins */
+    font-size: 0.9em;                      /* Smaller font size */
+    color: #bbbbbb;                        /* Light gray text */
+}
+
+/* Plan container heading */
+.plan-container h2 {
+    text-align: center;                    /* Center-aligned */
+    color: white;                          /* White text */
+}
+
+/* Large middle text (possibly for empty states) */
+.middel-text {
+    font-size: 2.5em;                      /* Very large font */
+    color: #888;                           /* Gray color */
+    margin-bottom: 10rem;                  /* Large bottom margin */
+    margin-top: 10rem;                     /* Large top margin */
+    text-align: center;                    /* Center-aligned */
+}
+
+/* Sub middle text */
+.middel-text-sub {
+    font-size: 2em;                        /* Large font */
+    color: #888;                           /* Gray color */
+    margin-bottom: 9rem;                   /* Large bottom margin */
+    text-align: center;                    /* Center-aligned */
+}
+
+/* Toggle icon for expand/collapse */
+.toggle-icon {
+    color: white;                          /* White color */
+    font-size: 15px;                       /* Icon size */
+    transition: transform 0.3s ease;       /* Rotation animation */
+}
+
+/* Rotated state for toggle icon */
+.day-plan.active .toggle-icon {
+    transform: rotate(180deg);             /* Upside down when active */
+}
+
+/* Recommendation note box */
+.recommendation-note {
+    background-color: #2a2a2a;             /* Dark background */
+    color: #ffcc00;                        /* Yellow text */
+    padding: 10px;                         /* Inner spacing */
+    border-radius: 5px;                    /* Slightly rounded corners */
+    margin-bottom: 20px;                   /* Bottom margin */
+    text-align: center;                    /* Center-aligned */
+}
+
+/* Recommended exercise style */
+.recommended-exercise {
+    border-left: 4px solid #ffcc00;        /* Yellow left border */
+    background-color: #333;                /* Darker background */
+}
+
+/* Recommended badge */
+.recommended-badge {
+    position: absolute;                    /* Absolute positioning */
+    top: 10px;                             /* From top */
+    right: 10px;                           /* From right */
+    background-color: #ffcc00;             /* Yellow background */
+    color: #000;                           /* Black text */
+    padding: 3px 8px;                      /* Inner spacing */
+    border-radius: 12px;                   /* Rounded corners */
+    font-size: 0.8em;                      /* Small font */
+    font-weight: bold;                     /* Bold text */
+}
+
+/* Exercise details section */
+.exercise-details {
+    margin-top: 10px;                      /* Top margin */
+}
+
+/* Container for exercise stats */
+.exercise-stats {
+    display: flex;                         /* Flex layout */
+    gap: 10px;                             /* Space between items */
+    margin: 10px 0;                        /* Vertical margins */
+}
+
+/* Individual stat box */
+.stat-box {
+    background-color: #222;                /* Dark background */
+    padding: 8px 12px;                     /* Inner spacing */
+    border-radius: 8px;                    /* Rounded corners */
+    text-align: center;                    /* Center-aligned */
+    color: #ffffff;                        /* White text */
+    flex: 1;                               /* Equal width */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Shadow */
+}
+
+/* Stat label text */
+.stat-label {
+    display: block;                        /* Block display */
+    font-size: 0.8em;                      /* Small font */
+    color: #bbb;                           /* Light gray */
+}
+
+/* Stat value text */
+.stat-value {
+    font-weight: bold;                     /* Bold text */
+    font-size: 1.1em;                      /* Slightly larger font */
+}
+
+/* Workout notes section */
+.workout-notes {
+    margin-top: 10px;                      /* Top margin */
+    padding: 10px;                         /* Inner spacing */
+    background-color: #1e1e1e;             /* Dark background */
+    border-radius: 8px;                    /* Rounded corners */
+    border-left: 3px solid #4CAF50;        /* Green left border */
+}
+
+/* Responsive adjustments for tablets and smaller laptops */
+@media (max-width: 1024px) {
+    .form-container,
+    .plan-container {
+        width: 80%;                        /* Wider containers */
+    }
+}
+
+/* Responsive adjustments for tablets */
+@media (max-width: 768px) {
+    .form-container,
+    .plan-container {
+        width: 90%;                        /* Even wider containers */
+        padding: 20px;                     /* Less padding */
+    }
+
+    .middel-text {
+        font-size: 2em;                    /* Smaller font */
+        margin: 5rem 0;                    /* Smaller margins */
+    }
+
+    .middel-text-sub {
+        font-size: 1.8em;                  /* Smaller font */
+        margin: 3rem 0;                    /* Smaller margins */
+    }
+
+    .day-header {
+        padding: 20px;                     /* Less padding */
+    }
+
+    .exercise {
+        padding: 20px;                     /* Less padding */
+    }
+
+    button {
+        font-size: 1rem;                   /* Smaller font */
+        padding: 12px;                     /* Less padding */
+    }
+
+    select,
+    input {
+        font-size: 14px;                   /* Smaller font */
+        padding: 12px;                     /* Less padding */
+    }
+}
+
+/* Responsive adjustments for mobile phones */
+@media (max-width: 480px) {
+    .form-container,
+    .plan-container {
+        width: 95%;                        /* Nearly full width */
+        padding: 15px;                     /* Minimal padding */
+    }
+
+    .middel-text {
+        font-size: 1.8em;                  /* Even smaller font */
+        margin: 3rem 0;                    /* Smaller margins */
+    }
+
+    .middel-text-sub {
+        font-size: 1.5em;                  /* Even smaller font */
+        margin: 2rem 0;                    /* Smaller margins */
+    }
+
+    .day-header {
+        padding: 15px;                     /* Minimal padding */
+    }
+
+    .exercise {
+        padding: 15px;                     /* Minimal padding */
+    }
+
+    button {
+        font-size: 0.9rem;                 /* Tiny font */
+        padding: 10px;                     /* Minimal padding */
+    }
+
+    select,
+    input {
+        font-size: 12px;                   /* Tiny font */
+        padding: 10px;                     /* Minimal padding */
+    }
+}
+
+/* Note: The existing media queries already cover all necessary responsive cases from 1024px down to 480px, 
+   so no additional media queries need to be added. The styles progressively adjust container widths, 
+   padding, font sizes, and margins to ensure good readability and usability on all device sizes. */

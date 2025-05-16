@@ -64,8 +64,15 @@ def generate():
     if any(v == 'Select' for v in [user_data['category'], user_data['level'], user_data['equipment']]):
         return render_template('index.html', error_message="Please select valid options for category, level, and equipment.")
 
+    # Get the base directory of the project
+    BASE_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+
+    # Construct the correct path
+    csv_path = os.path.join(BASE_DIR, "data", "exercisedata.csv")
+
+
     try:
-        exercises_df = pd.read_csv('data/exercisedata.csv')
+        exercises_df = pd.read_csv(csv_path)
     except Exception as e:
         return render_template('index.html', error_message=f"Could not load exercise data: {str(e)}")
 
@@ -145,4 +152,4 @@ def generate():
                          has_recommendations=False)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5001, debug=True)

@@ -1,160 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Workout Plan Generator</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-        <link rel="stylesheet" href="static/styles.css">
-    </head>
-    
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Workout Plan Generator</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="static/styles.css" />
+  </head>
+
+  <body>
     <h1>Workout Plan Generator</h1>
 
     <div class="form-container">
-        <form action="/generate" method="POST">
-            <label for="age">How young are you?</label>
-            <input type="number" id="age" name="age" placeholder="Enter your age" required>
-            
-            <label for="weight">Reveal your mighty stats, of course your weight</label>
-            <input type="number" id="weight" name="weight" placeholder="Enter your Weight (kg)" required>
-            
-            <label for="height">Stand tall, and share your stats:</label>
-            <input type="number" id="height" name="height" placeholder="Enter your Height (cm)" required>
-            
-            <label for="category">Let's check your needs on body: select your type from below</label>
-            <select id="category" name="category" required>
-                <option value="Select">Select</option>
-                <option value="Cardio">Cardio</option>
-                <option value="Strength">Strength</option>
-                <option value="Flexibility">Flexibility</option>
-                <option value="HIIT">HIIT</option>
-            </select>
-            
-            <label for="level">What's your excuse? What's your level?</label>
-            <select id="level" name="level" required>
-                <option value="Select">Select</option>
-                <option value="Beginner">Beginner</option>
-                <option value="Intermediate">Intermediate</option>
-                <option value="Advanced">Advanced</option>
-            </select>
-            
-            <label for="equipment">Equipments are just a medium of work, choose from below</label>
-            <select id="equipment" name="equipment" required>
-                <option value="Select">Select</option>
-                <option value="None">None</option>
-                <option value="Dumbbell">Dumbbell</option>
-                <option value="Resistance Band">Resistance Band</option>
-                <option value="Treadmill">Treadmill</option>
-            </select>
-            
-            <button type="submit">
-                <i class="fas fa-dumbbell"></i> Generate Workout Plan
-            </button>
-        </form>
+      <form action="/generate" method="POST">
+        <label for="age">How young are you?</label>
+        <input
+          type="number"
+          id="age"
+          name="age"
+          placeholder="Enter your age"
+          required
+        />
+
+        <label for="weight"
+          >Reveal your mighty stats, of course your weight</label
+        >
+        <input
+          type="number"
+          id="weight"
+          name="weight"
+          placeholder="Enter your Weight (kg)"
+          required
+        />
+
+        <label for="height">Stand tall, and share your stats:</label>
+        <input
+          type="number"
+          id="height"
+          name="height"
+          placeholder="Enter your Height (cm)"
+          required
+        />
+
+        <label for="category"
+          >Let's check your needs on body: select your type from below</label
+        >
+        <select id="category" name="category" required>
+          <option value="Select">Select</option>
+          <option value="Cardio">Cardio</option>
+          <option value="Strength">Strength</option>
+          <option value="Flexibility">Flexibility</option>
+          <option value="HIIT">HIIT</option>
+        </select>
+
+        <label for="level">What's your excuse? What's your level?</label>
+        <select id="level" name="level" required>
+          <option value="Select">Select</option>
+          <option value="Beginner">Beginner</option>
+          <option value="Intermediate">Intermediate</option>
+          <option value="Advanced">Advanced</option>
+        </select>
+
+        <label for="equipment"
+          >Equipments are just a medium of work, choose from below</label
+        >
+        <select id="equipment" name="equipment" required>
+          <option value="Select">Select</option>
+          <option value="None">None</option>
+          <option value="Dumbbell">Dumbbell</option>
+          <option value="Resistance Band">Resistance Band</option>
+          <option value="Treadmill">Treadmill</option>
+        </select>
+
+        <button type="submit">
+          <i class="fas fa-dumbbell"></i> Generate Workout Plan
+        </button>
+      </form>
     </div>
 
     {% if not daily_plans %}
-    <div class="middel-text">The resistance that you fight physically in the gym and the resistance that you fight in life can only build a strong character.</div>
+    <div class="middel-text">
+      The resistance that you fight physically in the gym and the resistance
+      that you fight in life can only build a strong character.
+    </div>
     <div class="middel-text-sub">-Arnold Schwarzenegger</div>
     {% endif %}
 
     <div class="plan-container">
-        {% if error_message %}
-            <div class="error-message">
-                <i class="fas fa-exclamation-circle"></i> {{ error_message }}
-            </div>
-        {% endif %}
-        
-        {% if daily_plans %}
-            <h2>Your Weekly Workout Plan</h2>
-            
-            <div class="user-info">
-                <p>
-                    <i class="fas fa-user"></i> Age: {{ user_data.age }} | 
-                    <i class="fas fa-weight"></i> Weight: {{ user_data.weight }}kg | 
-                    <i class="fas fa-ruler-vertical"></i> Height: {{ user_data.height }}cm
-                </p>
-                <p>
-                    <i class="fas fa-tags"></i> {{ user_data.category }} + {{ user_data.level }} + {{ user_data.equipment }}
-                </p>
-            </div>
-            
-            {% for day, day_data in daily_plans.items() %}
-                <div class="day-plan" onclick="toggleDay(this)">
-                    <div class="day-header">
-                        <h3>{{ day }}</h3>
-                        <div class="muscle-groups">{{ day_data.muscle_groups }}</div>
-                        <span class="toggle-icon">+</span>
-                    </div>
-                    <div class="exercises-container">
-                        <div class="day-time-total">
-                            <i class="fas fa-clock"></i> Estimated Time: ~{{ day_data.total_time }} minutes
-                        </div>
-                        
-                        {% for exercise in day_data.exercises %}
-                            <div class="exercise">
-                                <h4>
-                                    {{ exercise.exercise_name }}
-                                    {% if exercise.difficulty %}
-                                    <span class="difficulty-value">
-                                        {{ exercise.difficulty.value }}/5
-                                    </span>
-                                    {% endif %}
-                                </h4>
-                                
-                                <!-- Inside your exercise loop, replace the difficulty section with: -->
-{% if exercise.difficulty %}
-<div class="difficulty-container">
-    <div class="difficulty-header">
-        <span>Intensity Level:</span>
-        <strong>{{ exercise.difficulty.label }} ({{ exercise.difficulty.value }}/5)</strong>
-    </div>
-    <div class="difficulty-meter">
-        <div class="meter-fill" 
-             style="width: {{ exercise.difficulty.percent }}%;
-                    background: hsl({{ (120 * exercise.difficulty.percent/100) }}, 100%, 40%)">
+      {% if error_message %}
+      <div class="error-message">
+        <i class="fas fa-exclamation-circle"></i> {{ error_message }}
+      </div>
+      {% endif %} {% if daily_plans %}
+      <h2>Your Weekly Workout Plan</h2>
+
+      <div class="user-info">
+        <p>
+          <i class="fas fa-user"></i> Age: {{ user_data.age }} |
+          <i class="fas fa-weight"></i> Weight: {{ user_data.weight }}kg |
+          <i class="fas fa-ruler-vertical"></i> Height: {{ user_data.height }}cm
+        </p>
+        <p>
+          <i class="fas fa-tags"></i> {{ user_data.category }} + {{
+          user_data.level }} + {{ user_data.equipment }}
+        </p>
+      </div>
+
+      {% for day, day_data in daily_plans.items() %}
+      <div class="day-plan" onclick="toggleDay(this)">
+        <div class="day-header">
+          <h3>{{ day }}</h3>
+          <div class="muscle-groups">{{ day_data.muscle_groups }}</div>
+          <span class="toggle-icon">+</span>
         </div>
-    </div>
-</div>
-{% endif %}
-                                
-                                <div class="exercise-details">
-                                    <p><strong><i class="fas fa-dumbbell"></i> Muscle Group:</strong> {{ exercise.muscle_group }}</p>
-                                    <p><strong><i class="fas fa-layer-group"></i> Sets:</strong> {{ exercise.sets }}</p>
-                                    <p><strong><i class="fas fa-redo"></i> Reps:</strong> {{ exercise.reps }}</p>
-                                    <p><strong><i class="fas fa-hourglass-half"></i> Rest:</strong> {{ exercise.rest_time }}s</p>
-                                    <p><strong><i class="far fa-clock"></i> Duration:</strong> {{ exercise.duration }} mins</p>
-                                    <p><strong><i class="fas fa-bolt"></i> Intensity:</strong> {{ exercise.intensity }}</p>
-                                </div>
-                                
-                                {% if exercise.workout_notes %}
-                                <div class="workout-notes">
-                                    <p><strong><i class="fas fa-sticky-note"></i> Notes:</strong> {{ exercise.workout_notes }}</p>
-                                </div>
-                                {% endif %}
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-            {% endfor %}
-        {% endif %}
+        <div class="exercises-container">
+          <div class="day-time-total">
+            <i class="fas fa-clock"></i> Estimated Time: ~{{ day_data.total_time
+            }} minutes
+          </div>
+
+          {% for exercise in day_data.exercises %}
+          <div class="exercise">
+            <h4>
+              {{ exercise.exercise_name }} {% if exercise.difficulty %}
+              <span class="difficulty-value">
+                {{ exercise.difficulty.value }}/5
+              </span>
+              {% endif %}
+            </h4>
+
+            <!-- Inside your exercise loop, replace the difficulty section with: -->
+            {% if exercise.difficulty %}
+            <div class="difficulty-container">
+              <div class="difficulty-header">
+                <span>Intensity Level:</span>
+                <strong
+                  >{{ exercise.difficulty.label }} ({{ exercise.difficulty.value
+                  }}/5)</strong
+                >
+              </div>
+              <div class="difficulty-meter">
+                <div
+                  class="meter-fill"
+                  style="width: {{ exercise.difficulty.percent }}%;
+                    background: hsl({{ (120 * exercise.difficulty.percent/100) }}, 100%, 40%)"
+                ></div>
+              </div>
+            </div>
+            {% endif %}
+
+            <div class="exercise-details">
+              <p>
+                <strong><i class="fas fa-dumbbell"></i> Muscle Group:</strong>
+                {{ exercise.muscle_group }}
+              </p>
+              <p>
+                <strong><i class="fas fa-layer-group"></i> Sets:</strong> {{
+                exercise.sets }}
+              </p>
+              <p>
+                <strong><i class="fas fa-redo"></i> Reps:</strong> {{
+                exercise.reps }}
+              </p>
+              <p>
+                <strong><i class="fas fa-hourglass-half"></i> Rest:</strong> {{
+                exercise.rest_time }}s
+              </p>
+              <p>
+                <strong><i class="far fa-clock"></i> Duration:</strong> {{
+                exercise.duration }} mins
+              </p>
+              <p>
+                <strong><i class="fas fa-bolt"></i> Intensity:</strong> {{
+                exercise.intensity }}
+              </p>
+            </div>
+
+            {% if exercise.workout_notes %}
+            <div class="workout-notes">
+              <p>
+                <strong><i class="fas fa-sticky-note"></i> Notes:</strong> {{
+                exercise.workout_notes }}
+              </p>
+            </div>
+            {% endif %}
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %} {% endif %}
     </div>
 
     <script>
-        function toggleDay(dayElement) {
-            dayElement.classList.toggle('active');
-            const icon = dayElement.querySelector('.toggle-icon');
-            icon.textContent = dayElement.classList.contains('active') ? '-' : '+';
-        }
+      function toggleDay(dayElement) {
+        dayElement.classList.toggle("active");
+        const icon = dayElement.querySelector(".toggle-icon");
+        icon.textContent = dayElement.classList.contains("active") ? "-" : "+";
+      }
 
-        // Close all day plans by default when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            const dayPlans = document.querySelectorAll('.day-plan');
-            dayPlans.forEach(plan => {
-                plan.classList.remove('active');
-            });
+      // Close all day plans by default when page loads
+      document.addEventListener("DOMContentLoaded", function () {
+        const dayPlans = document.querySelectorAll(".day-plan");
+        dayPlans.forEach((plan) => {
+          plan.classList.remove("active");
         });
+      });
     </script>
-</body>
+  </body>
 </html>
