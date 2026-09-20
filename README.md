@@ -147,13 +147,6 @@ cd Ai_category_generator
 python model_trainer.py
 ```
 
-## Security & Privacy
-
-- No API keys or external services required
-- All data processing happens locally
-- No user data is stored or transmitted
-- No sensitive information found in the codebase
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
